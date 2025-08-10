@@ -10,31 +10,34 @@ public class Produto {
    private double preco;
    private double totalPreco;
    private LocalDate dataDeInclusao;
+   private LocalDate dataValidade;
    private int SEQUENCIAL_CODE =0;
    private String codigoBarras;
+   private String local;
 
-    public Produto(String nome, int quantidade, double preco, LocalDate dataInclusao, String codigoBarras) {
+    public Produto(String nome, int quantidade, double preco, String codigoBarras, String local) {
         this.nome =nome;
         this.quantidade = quantidade;
         this.preco = preco;
         this.codigoBarras = codigoBarras;
-        this.dataDeInclusao = dataDeInclusao;
+        this.dataDeInclusao = dataDeInclusao.now();
         this.SEQUENCIAL_CODE = SEQUENCIAL_CODE++;
-
         this.totalPreco = (this.preco * this.quantidade);
+        this.local = local;
     }
 
 
     @Override
     public String toString() {
         return "Produto{" +
-                "nome='" + nome + '\'' +
-                ", quantidade=" + quantidade +
-                ", preco=" + preco +
-                ", totalPreco=" + totalPreco +
-                ", dataDeInclusao=" + dataDeInclusao +
-                ", SEQUENCIAL_CODE=" + SEQUENCIAL_CODE +
-                ", codigoBarras='" + codigoBarras + '\'' +
+                "Nome='" + nome + '\'' +
+                ", Quantidade=" + quantidade +
+                ", Preco=" + preco +
+                ", TotalPreco=" + totalPreco +
+                ", DataDeInclusao=" + dataDeInclusao +
+                ", Codigo do produto=" + SEQUENCIAL_CODE +
+                ", Codigo de barras='" + codigoBarras + '\'' +
+                ", localização='" + local + '\'' +
                 '}';
     }
 
@@ -59,6 +62,9 @@ public class Produto {
     public String getCodigoBarras(){
         return codigoBarras;
     }
+    public String getLocal(){
+        return local;
+    }
 
 
     public void setNome(String nome) {
@@ -76,6 +82,10 @@ public class Produto {
     public void setCodigoBarras(String codigoBarras){
         this.codigoBarras = codigoBarras;
     }
+    public void setLocal(String local){
+        this.local = local;
+
+    }
 
 
     @Override
@@ -90,7 +100,7 @@ public class Produto {
 
 }
 
-class comparetorPorData implements Comparator<Produto>{
+public class ComparetorPorData implements Comparator<Produto>{
 
     @Override
     public int compare(Produto p1, Produto p2) {
